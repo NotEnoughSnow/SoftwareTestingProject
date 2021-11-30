@@ -15,6 +15,7 @@ public class HomePage {
 
     private static final By LOGIN_ERROR = By.xpath("//*[@id=\"center_column\"]/div[1]/ol/li");
     private static final By CONTACT_ERROR = By.cssSelector("#center_column > div > ol > li");
+    private static final By FORGOT_PASS_ERROR = By.xpath("//*[@id=\"center_column\"]/div/div/ol/li");
 
     @FindBy(className = "login")
     private WebElement signInLink;
@@ -27,6 +28,12 @@ public class HomePage {
 
     @FindBy(id = "submitMessage")
     private WebElement sendButton;
+    
+    @FindBy(xpath = "//*[@id=\"login_form\"]/div/p[1]/a")
+    public WebElement forgotPasswordLink;
+    
+    @FindBy(xpath = "//*[@id=\"form_forgotpassword\"]/fieldset/p/button\n")
+    public WebElement retrievePasswordButton;
 
     private WebDriver driver;
 
@@ -39,6 +46,13 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
+    public void clickForgetPassLink() {
+    	forgotPasswordLink.click();
+    }
+    
+    public void clickRetrievePass() {
+    	retrievePasswordButton.click();
+    }
     public void clickSignInLink() {
         signInLink.click();
     }
@@ -53,6 +67,9 @@ public class HomePage {
 
     public Optional<String> getContactError() {
         return getErrorMessage(CONTACT_ERROR);
+    }
+    public Optional<String> getForgotPassError() {
+        return getErrorMessage(FORGOT_PASS_ERROR);
     }
 
     public void fillField(String field, String value) {
