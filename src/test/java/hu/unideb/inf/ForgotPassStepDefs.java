@@ -13,34 +13,17 @@ import io.cucumber.java.en.When;
 
 public class ForgotPassStepDefs extends AbstractStepDefs {
 	
-	@And("the Sign in link is clicked")
-    public void theSignInLinkIsClicked1() {
-        homePage.clickSignInLink();
-    }
-	
 	@And("the Forgot password link is clicked")
     public void theForgotPassIsClicked() {
-        homePage.clickForgetPassLink();
+        homePage.forgotPasswordLink.click();
     }
-	
-	 @Given("the email1 address is filled with {string}")
-	    public void theForgotPassEmailAddressIsFilledWith(String arg0) {
-	        homePage.fillField("email", arg0);
-	    }
+	 
 	 
 	 @When("the Retrieve Password button is clicked")
 	    public void theRetrievePassIsClicked() {
-	        homePage.clickRetrievePass();
+	        homePage.retrievePasswordButton.click();
 	    }
 	 
-	 @Then("a {string} error message is shown1")
-	    public void aForgotPassErrorMessageIsShown(String arg0) {
-	        Optional<String> errorMessage = homePage.getForgotPassError();
-	        if (errorMessage.isPresent()) {
-	            Assert.assertEquals(arg0, errorMessage.get());
-	        } else {
-	            fail();
-	        }
-	    }
+	
 
 }

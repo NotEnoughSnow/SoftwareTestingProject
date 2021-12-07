@@ -21,12 +21,26 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
-public class LoginStepDefs extends AbstractStepDefs {
+public class NewsLetterStepDefs extends AbstractStepDefs {
 
 
-    @When("the Sign In button is clicked")
-    public void theSignInButtonIsClicked() {
-        homePage.signInButton.click();
+    @Given("{string} is typed in email box")
+    public void newsLetterInput(String arg0) {
+    	WebElement el = driver.findElement(By.xpath("//*[@id=\"newsletter-input\"]"));
+    	el.sendKeys(arg0);
+    }
+    
+    @When("the newsletter button is clicked")
+    public void newsletterClick() {
+        homePage.newsletterButton.click();
+    }
+    
+    @Then("a {string} newsletter message displays")
+    public void newsLetterMesage(String arg0) {
+
+    	WebElement el = driver.findElement(By.xpath("//*[@id=\"columns\"]/p"));
+
+    	assertEquals(el.getText(), arg0);
     }
 
 

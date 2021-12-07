@@ -21,12 +21,21 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
-public class LoginStepDefs extends AbstractStepDefs {
+public class SignUpStepDef extends AbstractStepDefs {
 
 
-    @When("the Sign In button is clicked")
+    @When("the create account button is clicked")
     public void theSignInButtonIsClicked() {
-        homePage.signInButton.click();
+        homePage.createAccButton.click();
+    }
+    
+    
+    @Then("a {string} create account error message displays")
+    public void createAccountError(String arg0) {
+
+    	WebElement el = driver.findElement(By.xpath("//*[@id=\"create_account_error\"]/ol/li"));
+
+    	assertEquals(el.getText(), arg0);
     }
 
 
